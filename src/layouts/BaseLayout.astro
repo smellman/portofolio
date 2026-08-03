@@ -1,0 +1,155 @@
+---
+import "../assets/app.css";
+import { withBase } from "../lib/base";
+
+type Props = {
+  title?: string;
+  description?: string;
+  image?: string;
+  ogType?: "website" | "article";
+};
+
+const SITE_NAME = "smellman's Portfolio";
+const {
+  title,
+  description = "地図・OpenStreetMap・OSS が好きなソフトウェアエンジニアのポートフォリオ。",
+  image = "/favicon.svg",
+  ogType = "website",
+} = Astro.props;
+
+const pageTitle = title ? `${title} | ${SITE_NAME}` : SITE_NAME;
+
+const siteUrl = Astro.site ?? new URL("https://portofolio.smellman.org/");
+const canonicalUrl = new URL(Astro.url.pathname, siteUrl).toString();
+const absImage = /^https?:\/\//.test(image)
+  ? image
+  : new URL(withBase(image), siteUrl).toString();
+
+const nav = {
+  home: withBase("/"),
+  profile: withBase("/profile"),
+  works: [
+    { label: "Geolonia", href: withBase("/works/geolonia") },
+    { label: "Georepublic", href: withBase("/works/georepublic") },
+  ],
+  hobby: [
+    { label: "Music", href: withBase("/hobby/music") },
+    { label: "Games", href: withBase("/hobby/games") },
+  ],
+  programmings: withBase("/programmings"),
+  oss: withBase("/oss"),
+};
+
+const year = new Date().getFullYear();
+---
+
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href={withBase("/favicon.svg")} />
+    <link rel="icon" href={withBase("/favicon.svg")} sizes="any" />
+    <link rel="apple-touch-icon" href={withBase("/favicon.svg")} />
+    <link rel="canonical" href={canonicalUrl} />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+
+    <meta property="og:site_name" content={SITE_NAME} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={absImage} />
+    <meta property="og:locale" content="ja_JP" />
+    <meta name="twitter:card" content="summary" />
+  </head>
+
+  <body class="min-h-screen flex flex-col bg-base-200 text-base-content">
+    <header class="navbar bg-base-100 border-b border-base-300 sticky top-0 z-30 px-4">
+      <div class="navbar-start">
+        <div class="dropdown lg:hidden">
+          <div tabindex="0" role="button" class="btn btn-ghost btn-square">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </div>
+          <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-40 p-2 shadow bg-base-100 rounded-box w-56">
+            <li><a href={nav.home}>Home</a></li>
+            <li><a href={nav.profile}>Profile</a></li>
+            <li>
+              <details>
+                <summary>Works</summary>
+                <ul>
+                  {nav.works.map((w) => <li><a href={w.href}>{w.label}</a></li>)}
+                </ul>
+              </details>
+            </li>
+            <li>
+              <details>
+                <summary>Hobby</summary>
+                <ul>
+                  {nav.hobby.map((h) => <li><a href={h.href}>{h.label}</a></li>)}
+                </ul>
+              </details>
+            </li>
+            <li><a href={nav.programmings}>Programming</a></li>
+            <li><a href={nav.oss}>OSS / 登壇</a></li>
+          </ul>
+        </div>
+        <a href={nav.home} class="btn btn-ghost text-lg font-bold normal-case">{SITE_NAME}</a>
+      </div>
+
+      <nav class="navbar-center hidden lg:flex">
+        <ul class="menu menu-horizontal px-1 gap-1">
+          <li><a href={nav.home}>Home</a></li>
+          <li><a href={nav.profile}>Profile</a></li>
+          <li>
+            <details>
+              <summary>Works</summary>
+              <ul class="p-2 z-40 bg-base-100 rounded-box w-48">
+                {nav.works.map((w) => <li><a href={w.href}>{w.label}</a></li>)}
+              </ul>
+            </details>
+          </li>
+          <li>
+            <details>
+              <summary>Hobby</summary>
+              <ul class="p-2 z-40 bg-base-100 rounded-box w-48">
+                {nav.hobby.map((h) => <li><a href={h.href}>{h.label}</a></li>)}
+              </ul>
+            </details>
+          </li>
+          <li><a href={nav.programmings}>Programming</a></li>
+          <li><a href={nav.oss}>OSS / 登壇</a></li>
+        </ul>
+      </nav>
+
+      <div class="navbar-end">
+        <a
+          href="https://github.com/smellman"
+          target="_blank"
+          rel="noopener"
+          class="btn btn-ghost btn-square"
+          title="GitHub"
+        >
+          <svg viewBox="0 0 16 16" class="w-5 h-5" fill="currentColor" aria-hidden="true">
+            <path
+              d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"
+            ></path>
+          </svg>
+        </a>
+      </div>
+    </header>
+
+    <main class="flex-1 w-full">
+      <slot />
+    </main>
+
+    <footer class="footer footer-center bg-base-100 border-t border-base-300 p-6 text-base-content/70">
+      <aside>
+        <p>© {year} smellman (Taro Matsuzawa)</p>
+      </aside>
+    </footer>
+  </body>
+</html>

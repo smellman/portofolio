@@ -1,0 +1,36 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getCollection, render } from "astro:content";
+
+export async function getStaticPaths() {
+  const pages = await getCollection("pages", ({ data }) => !data.draft);
+  return pages.map((entry) => ({
+    // entry.id はファイルの相対パス (拡張子なし)。例: "works/geolonia"
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { data } = entry;
+const { Content } = await render(entry);
+---
+
+<BaseLayout title={data.title} description={data.description} image={data.hero_image}>
+  <article class="mx-auto max-w-3xl px-4 py-10">
+    {data.hero_image && (
+      <img src={data.hero_image} alt="" class="w-full h-auto rounded-lg mb-6" loading="eager" />
+    )}
+    <h1 class="text-3xl font-bold">{data.title}</h1>
+    {data.description && <p class="mt-2 text-base-content/70">{data.description}</p>}
+    {data.updated && (
+      <p class="mt-1 text-sm text-base-content/50">更新: {data.updated}</p>
+    )}
+
+    <div class="divider"></div>
+
+    <div class="prose max-w-none">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>

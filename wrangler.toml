@@ -1,0 +1,6 @@
+# Cloudflare Pages 用の設定。
+# ダッシュボードの Git 連携でビルドさせる場合はこのファイルは必須ではないが、
+# `npx wrangler pages deploy` でローカル/CI から直接デプロイする場合に使う。
+name = "portofolio"
+compatibility_date = "2026-08-04"
+pages_build_output_dir = "dist"

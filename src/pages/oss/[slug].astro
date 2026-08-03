@@ -1,0 +1,99 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection, render } from "astro:content";
+import OssMap from "../../components/OssMap";
+import { withBase } from "../../lib/base";
+
+export async function getStaticPaths() {
+  const entries = await getCollection("oss", ({ data }) => !data.draft);
+  return entries.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { data } = entry;
+const { Content } = await render(entry);
+
+const hasCoords =
+  typeof data.longitude === "number" && typeof data.latitude === "number";
+
+const points = hasCoords
+  ? [
+      {
+        id: entry.id,
+        title: data.title,
+        latitude: data.latitude!,
+        longitude: data.longitude!,
+        href: withBase(`/oss/${entry.id}`),
+        event: data.event,
+        location: data.location,
+        date: data.date,
+      },
+    ]
+  : [];
+---
+
+<BaseLayout title={data.title} description={data.event} image={data.hero_image} ogType="article">
+  <article class="mx-auto max-w-3xl px-4 py-10">
+    <p class="text-sm mb-4">
+      <a href={withBase("/oss")} class="link link-primary">← OSS / 登壇マップに戻る</a>
+    </p>
+
+    {data.hero_image && (
+      <img src={data.hero_image} alt="" class="w-full h-auto rounded-lg mb-6" loading="eager" />
+    )}
+
+    <h1 class="text-3xl font-bold leading-snug">{data.title}</h1>
+
+    <dl class="mt-4 grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 text-sm">
+      {data.event && (
+        <>
+          <dt class="text-base-content/50">イベント</dt>
+          <dd>{data.event}</dd>
+        </>
+      )}
+      {data.date && (
+        <>
+          <dt class="text-base-content/50">日付</dt>
+          <dd>{data.date}</dd>
+        </>
+      )}
+      {data.location && (
+        <>
+          <dt class="text-base-content/50">会場</dt>
+          <dd>{data.location}</dd>
+        </>
+      )}
+    </dl>
+
+    {(data.url || data.slides) && (
+      <div class="mt-4 flex flex-wrap gap-2">
+        {data.slides && (
+          <a href={data.slides} target="_blank" rel="noopener" class="btn btn-sm btn-primary">
+            スライド
+          </a>
+        )}
+        {data.url && (
+          <a href={data.url} target="_blank" rel="noopener" class="btn btn-sm btn-outline">
+            関連リンク
+          </a>
+        )}
+      </div>
+    )}
+
+    <div class="divider"></div>
+
+    <div class="prose max-w-none">
+      <Content />
+    </div>
+
+    {points.length > 0 && (
+      <div class="mt-8">
+        <h2 class="text-lg font-bold mb-3">開催地</h2>
+        <OssMap client:only="react" points={points} height="360px" singleZoom={13} />
+      </div>
+    )}
+  </article>
+</BaseLayout>

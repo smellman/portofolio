@@ -1,0 +1,68 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+import OssMap from "../../components/OssMap";
+import { withBase } from "../../lib/base";
+
+const entries = await getCollection("oss", ({ data }) => !data.draft);
+
+const withCoords = entries.filter(
+  (e) => typeof e.data.longitude === "number" && typeof e.data.latitude === "number",
+);
+
+const points = withCoords.map((e) => ({
+  id: e.id,
+  title: e.data.title,
+  latitude: e.data.latitude!,
+  longitude: e.data.longitude!,
+  href: withBase(`/oss/${e.id}`),
+  event: e.data.event,
+  location: e.data.location,
+  date: e.data.date,
+}));
+
+// 一覧は日付の新しい順
+const sorted = [...entries].sort((a, b) => (b.data.date ?? "").localeCompare(a.data.date ?? ""));
+---
+
+<BaseLayout title="OSS / 登壇" description="オープンソース活動と登壇資料。地図上のマーカーから各発表ページへ。">
+  <div class="mx-auto max-w-5xl px-4 py-10">
+    <h1 class="text-3xl font-bold">OSS / 登壇</h1>
+    <p class="mt-2 text-base-content/70">
+      各地での発表を地図にまとめています。マーカーをクリックすると発表ページへ移動します。
+    </p>
+
+    <div class="mt-6">
+      {
+        points.length === 0 ? (
+          <div class="alert">地図に表示できる発表がまだありません。</div>
+        ) : (
+          <OssMap client:only="react" points={points} />
+        )
+      }
+    </div>
+
+    <h2 class="mt-10 text-xl font-bold">発表一覧</h2>
+    <ul class="mt-4 grid gap-4 sm:grid-cols-2">
+      {
+        sorted.map((e) => (
+          <li>
+            <a
+              href={withBase(`/oss/${e.id}`)}
+              class="card bg-base-100 border border-base-300 shadow-sm hover:border-primary transition-colors h-full"
+            >
+              <div class="card-body">
+                <h3 class="card-title text-base">{e.data.title}</h3>
+                <div class="text-sm text-base-content/60 space-y-0.5">
+                  {e.data.event && <div>{e.data.event}</div>}
+                  {e.data.date && <div>{e.data.date}</div>}
+                  {e.data.location && <div>📍 {e.data.location}</div>}
+                </div>
+              </div>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</BaseLayout>
