@@ -10,6 +10,11 @@ updated: "2026-08-04"
 地図・OpenStreetMap・OSS が好きなソフトウェアエンジニアです。
 地図とUNIXとブレイクコアが好きです。
 
+<div style="display:flex;gap:1rem;flex-wrap:wrap;align-items:flex-start;margin:1rem 0;">
+  <img src="/images/profile/avatar.png" alt="btm のアイコン(イラスト)" width="180" height="180" style="border-radius:12px;" />
+  <img src="/images/profile/btm.jpg" alt="Duke を抱える btm" width="240" style="border-radius:12px;" />
+</div>
+
 ### ハンドルネーム
 
 - btm
@@ -53,6 +58,8 @@ updated: "2026-08-04"
 ### リンク
 
 - GitHub: [@smellman](https://github.com/smellman)
-- Mail: taro.matsuzawa@geolonia.com
-
-> このページは Markdown で書けます。プロフィールは自由に書き足してください。
+- X: [@smellman](https://x.com/smellman)
+- Facebook: [@btm.smellman](https://www.facebook.com/btm.smellman)
+- はてなブログ: [smellman's Broken Diary](https://smellman.hatenablog.com/)
+- linkedin: [tmatsuzawa](https://www.linkedin.com/in/tmatsuzawa/)
+- Mail: btm at smellman.org
