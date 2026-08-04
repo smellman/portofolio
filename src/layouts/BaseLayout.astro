@@ -12,7 +12,7 @@ type Props = {
 const SITE_NAME = "smellman's Portfolio";
 const {
   title,
-  description = "地図・OpenStreetMap・OSS が好きなソフトウェアエンジニアのポートフォリオ。",
+  description = "地図・OpenStreetMap・OSS・UNIX が好きなソフトウェアエンジニアのポートフォリオ。",
   image = "/favicon.svg",
   ogType = "website",
 } = Astro.props;
@@ -94,7 +94,7 @@ const year = new Date().getFullYear();
               </details>
             </li>
             <li><a href={nav.programmings}>Programming</a></li>
-            <li><a href={nav.oss}>OSS / 登壇</a></li>
+            <li><a href={nav.oss}>OSS</a></li>
           </ul>
         </div>
         <a href={nav.home} class="btn btn-ghost text-lg font-bold normal-case">{SITE_NAME}</a>
@@ -121,7 +121,7 @@ const year = new Date().getFullYear();
             </details>
           </li>
           <li><a href={nav.programmings}>Programming</a></li>
-          <li><a href={nav.oss}>OSS / 登壇</a></li>
+          <li><a href={nav.oss}>OSS</a></li>
         </ul>
       </nav>
 

@@ -1,9 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { withBase } from "../lib/base";
-import { getCollection } from "astro:content";
-
-const ossCount = (await getCollection("oss", ({ data }) => !data.draft)).length;
 
 const cards = [
   {
@@ -16,7 +13,7 @@ const cards = [
   },
   {
     title: "OSS",
-    desc: `オープンソース活動と登壇資料。地図上から ${ossCount} 件の発表へ。`,
+    desc: `オープンソース活動と登壇資料など。`,
     links: [{ label: "地図で見る", href: withBase("/oss") }],
   },
   {

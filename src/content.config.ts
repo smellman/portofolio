@@ -29,7 +29,7 @@ export const pages = defineCollection({
 
 /**
  * OSS presentations
- * - 登壇・発表ページ。Markdown に longitude / latitude を入れると
+ * - 発表ページ。Markdown に longitude / latitude を入れると
  *   /oss/ の MapLibre 地図にマーカーとして出る。
  *   例) foss4g-2023.md   -> /oss/foss4g-2023/
  *       osc-2026-kyoto.md -> /oss/osc-2026-kyoto/
