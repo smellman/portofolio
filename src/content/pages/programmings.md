@@ -39,6 +39,7 @@ updated: "2026-08-03"
 - Python
 - Visual Basic
 - Ruby
+- Objective-C
 
 #### 2010年代
 
