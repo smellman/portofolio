@@ -1,11 +1,11 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getCollection, render } from "astro:content";
-import OssMap from "../../components/OssMap";
+import PresentationMap from "../../components/PresentationMap";
 import { withBase } from "../../lib/base";
 
 export async function getStaticPaths() {
-  const entries = await getCollection("oss", ({ data }) => !data.draft);
+  const entries = await getCollection("presentations", ({ data }) => !data.draft);
   return entries.map((entry) => ({
     params: { slug: entry.id },
     props: { entry },
@@ -26,7 +26,7 @@ const points = hasCoords
         title: data.title,
         latitude: data.latitude!,
         longitude: data.longitude!,
-        href: withBase(`/oss/${entry.id}`),
+        href: withBase(`/presentations/${entry.id}`),
         event: data.event,
         location: data.location,
         date: data.date,
@@ -38,7 +38,7 @@ const points = hasCoords
 <BaseLayout title={data.title} description={data.event} image={data.hero_image} ogType="article">
   <article class="mx-auto max-w-3xl px-4 py-10">
     <p class="text-sm mb-4">
-      <a href={withBase("/oss")} class="link link-primary">← OSSマップに戻る</a>
+      <a href={withBase("/presentations")} class="link link-primary">← 発表マップに戻る</a>
     </p>
 
     {data.hero_image && (
@@ -92,7 +92,7 @@ const points = hasCoords
     {points.length > 0 && (
       <div class="mt-8">
         <h2 class="text-lg font-bold mb-3">開催地</h2>
-        <OssMap client:only="react" points={points} height="360px" singleZoom={13} />
+        <PresentationMap client:only="react" points={points} height="360px" singleZoom={13} />
       </div>
     )}
   </article>

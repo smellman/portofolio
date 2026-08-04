@@ -28,14 +28,14 @@ export const pages = defineCollection({
 });
 
 /**
- * OSS presentations
+ * Presentations
  * - 発表ページ。Markdown に longitude / latitude を入れると
- *   /oss/ の MapLibre 地図にマーカーとして出る。
- *   例) foss4g-2023.md   -> /oss/foss4g-2023/
- *       osc-2026-kyoto.md -> /oss/osc-2026-kyoto/
+ *   /presentations/ の MapLibre 地図にマーカーとして出る。
+ *   例) foss4g-2023.md   -> /presentations/foss4g-2023/
+ *       osc-2026-kyoto.md -> /presentations/osc-2026-kyoto/
  */
-export const oss = defineCollection({
-  loader: glob({ pattern: "**/*.md", base: "./src/content/oss" }),
+export const presentations = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/presentations" }),
   schema: z.object({
     title: z.string(),
 
@@ -44,7 +44,7 @@ export const oss = defineCollection({
     location: z.string().optional(),
     date: z.string().optional(),
 
-    // 地図用(/oss)
+    // 地図用(/presentations)
     latitude: z.number().optional(),
     longitude: z.number().optional(),
 
@@ -59,4 +59,4 @@ export const oss = defineCollection({
   }),
 });
 
-export const collections = { pages, oss };
+export const collections = { pages, presentations };

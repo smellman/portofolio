@@ -1,10 +1,10 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
-import OssMap from "../../components/OssMap";
+import PresentationMap from "../../components/PresentationMap";
 import { withBase } from "../../lib/base";
 
-const entries = await getCollection("oss", ({ data }) => !data.draft);
+const entries = await getCollection("presentations", ({ data }) => !data.draft);
 
 const withCoords = entries.filter(
   (e) => typeof e.data.longitude === "number" && typeof e.data.latitude === "number",
@@ -15,7 +15,7 @@ const points = withCoords.map((e) => ({
   title: e.data.title,
   latitude: e.data.latitude!,
   longitude: e.data.longitude!,
-  href: withBase(`/oss/${e.id}`),
+  href: withBase(`/presentations/${e.id}`),
   event: e.data.event,
   location: e.data.location,
   date: e.data.date,
@@ -25,9 +25,9 @@ const points = withCoords.map((e) => ({
 const sorted = [...entries].sort((a, b) => (b.data.date ?? "").localeCompare(a.data.date ?? ""));
 ---
 
-<BaseLayout title="OSS" description="オープンソース活動と登壇資料。地図上のマーカーから各発表ページへ。">
+<BaseLayout title="Presentations" description="登壇資料。地図上のマーカーから各発表ページへ。">
   <div class="mx-auto max-w-5xl px-4 py-10">
-    <h1 class="text-3xl font-bold">OSS</h1>
+    <h1 class="text-3xl font-bold">Presentations</h1>
     <p class="mt-2 text-base-content/70">
       各地での発表を地図にまとめています。マーカーをクリックすると発表ページへ移動します。
     </p>
@@ -37,7 +37,7 @@ const sorted = [...entries].sort((a, b) => (b.data.date ?? "").localeCompare(a.d
         points.length === 0 ? (
           <div class="alert">地図に表示できる発表がまだありません。</div>
         ) : (
-          <OssMap client:only="react" points={points} />
+          <PresentationMap client:only="react" points={points} />
         )
       }
     </div>
@@ -48,7 +48,7 @@ const sorted = [...entries].sort((a, b) => (b.data.date ?? "").localeCompare(a.d
         sorted.map((e) => (
           <li>
             <a
-              href={withBase(`/oss/${e.id}`)}
+              href={withBase(`/presentations/${e.id}`)}
               class="card bg-base-100 border border-base-300 shadow-sm hover:border-primary transition-colors h-full"
             >
               <div class="card-body">

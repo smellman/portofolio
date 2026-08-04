@@ -17,7 +17,7 @@ let protocol = new Protocol();
 addProtocol("pmtiles", protocol.tile);
 import { withBase } from "../lib/base";
 
-export type OssPoint = {
+export type PresentationPoint = {
   id: string;
   title: string;
   latitude: number;
@@ -29,14 +29,14 @@ export type OssPoint = {
 };
 
 type Props = {
-  points: OssPoint[];
+  points: PresentationPoint[];
   /** マーカー1件のときのズーム(詳細ページ用) */
   singleZoom?: number;
   /** 地図の高さ(CSS 値) */
   height?: string;
 };
 
-const OssMap = ({ points, singleZoom = 12, height = "70vh" }: Props) => {
+const PresentationMap = ({ points, singleZoom = 12, height = "70vh" }: Props) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<MapType | null>(null);
 
@@ -114,4 +114,4 @@ const escapeHtml = (s: string) =>
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#39;");
 
-export default OssMap;
+export default PresentationMap;
