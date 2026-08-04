@@ -22,7 +22,7 @@ updated: "2026-08-04"
 - 1999年、ISDNルータを購入してテレホタイムにソースコードを落としては、コンパイルを仕掛けて大学に行く日々を送る。
 - 2000年、Mozilla Party JPに参加してMozillaの翻訳活動を開始。
 - 2002年、大学留年をきっかけにバイトでGISを開発。同年からアーツテックにバイトで入社。
-- 2003年、デスマーチで大変な目に遭う。
+- 2003年、MacBookを購入してMacユーザとなる。バイト先でデスマーチに巻き込まれる。
 - 2004年、アーツテックに正社員として入社。SI開発に従事。
 - 2008年、KBMJに転職。ECサイトの構築やOSSのエレコマの開発に従事。
 - 2009年、もじら組を脱退。
@@ -49,7 +49,8 @@ updated: "2026-08-04"
 - [OpenStreetMap Japan](https://www.openstreetmap.jp/) — OpenStreetMapの普及活動
 - [UNOpenGIS/7](https://github.com/UNopenGIS/7/) - unvt/charitesなどの開発に貢献
 - [日本UNIXユーザ会](https://www.jus.or.jp/) — UNIXの普及活動
-- [小江戸らぐ](https://koedolug.connpass.com/) - Linuxの勉強会に参加
+- [小江戸らぐ](https://koedolug.connpass.com/) - Linux/OSSの勉強会に参加
+- タイル三兄弟 - 謎
 
 #### 過去
 

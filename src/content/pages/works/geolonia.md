@@ -2,7 +2,7 @@
 title: "Geolonia"
 description: "私たちは、地理の知恵で社会をしなやかにします"
 order: 1
-updated: "2026-08-03"
+updated: "2026-08-04"
 ---
 
 ## Geolonia について
@@ -15,3 +15,4 @@ updated: "2026-08-03"
 
 - OpenStreetMap のデータを活用した地図基盤の開発
 - [国土地理院3次元地図可視化サイト](https://gsi-cyberjapan.github.io/gsi-3d-2025/)の開発
+  

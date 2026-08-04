@@ -2,7 +2,7 @@
 title: "Georepublic"
 description: "オープンソース GIS / 位置情報のプロフェッショナル集団。"
 order: 2
-updated: "2026-08-03"
+updated: "2026-08-04"
 ---
 
 ## Georepublic について
