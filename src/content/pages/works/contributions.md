@@ -23,11 +23,18 @@ updated: "2026-08-04"
 - [tile.openstreetmap.jp](https://tile.openstreetmap.jp/)
   - OpenStreetMap Foundation Japan のタイルサーバー。Planet 単位の Vector / Raster タイルを提供。
 - [OpenStreetMap Sound Demo](https://smellman.github.io/osm-sound-demo)
-  - くだらないOSSコンテスト 2025 入賞作。
+  - MapLibre GL JS を使った作品。くだらないOSSコンテスト 2025 入賞作。
+- [OpenStreetMap Sound Demo Navara](https://smellman.github.io/osm-sound-demo-navara)
+  - 上記のMapLibre Navara版。
 - [FOSS4G 2026 Website](https://2026.foss4g.org/en/)
   - コアメンテナー。
 - [OpenStreetMap Japan Website](https://openstreetmap.jp/)
   - メイン開発担当。DrupalからAstroへの移行を実施。
+
+## ネイティブアプリ
+
+- [OpenStreetMap Sound Demo Slint](https://github.com/smellman/osm-sound-demo-slint)
+  - OpenStreetMap Sound Demo の MapLibre Native FFI + Slint を使ったネイティブアプリ版。
 
 ## その他
 
