@@ -9,22 +9,22 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/react": "^6.0.2",
-    "astro": "^7.1.6",
-    "maplibre-gl": "^6.1.0",
-    "pmtiles": "^4.4.1",
-    "react": "^19.2.5",
-    "react-dom": "^19.2.5"
+    "@astrojs/react": "^7.1.4",
+    "astro": "^7.4.7",
+    "maplibre-gl": "^6.16.0",
+    "pmtiles": "^4.5.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.20",
-    "@tailwindcss/vite": "^4.3.3",
-    "@types/react": "^19.2.14",
-    "@types/react-dom": "^19.2.3",
-    "daisyui": "^5.7.16",
-    "tailwindcss": "^4.3.3"
+    "@tailwindcss/vite": "^4.3.4",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "daisyui": "^5.7.50",
+    "tailwindcss": "^4.3.4"
   },
   "overrides": {
-    "sharp": "0.35.0"
+    "sharp": "0.35.5"
   }
 }
